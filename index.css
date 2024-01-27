@@ -319,6 +319,7 @@ font-size:medium;
     padding-left: 0%;
     position: relative;
     margin-top: -1%;
+    right: 30px;
 }
 
 .experience h2 {
@@ -692,7 +693,9 @@ top: 84%;
             max-width: 40% fit-content;
             white-space: nowrap;
         }
-       
+        footer{
+          display: none;
+        }
 
     }
 
@@ -704,6 +707,15 @@ top: 84%;
             left: 30%;
             position: absolute;
            
+        }
+        footer{
+            color: rgb(3, 3, 3);
+            align-items: center;
+            justify-content: center;
+            margin-left: 30%;
+            margin-top: 40%;
+            margin-bottom: 0%;
+            
         }
     }
 
@@ -845,7 +857,9 @@ padding-left: 20px;
 
         
     }
-   
+    footer{
+       display: none;
+    }
 }
 
 
@@ -907,6 +921,9 @@ padding-left: 20px;
             
            
         }
+        footer{
+           display: none;
+        }
         .name h5 {
             display: flex;
          
@@ -927,19 +944,13 @@ top: 40px;
 
            
         }
-        .wrapper {
-            
-            display: flex;
-            position: relative;
-          width: 90%        
-        }
+       
         .wrapper img{
             display: flex;
             justify-content: center;
-            align-items: center; 
-            padding-right: 10%;  
+            align-items: center;   
             max-width: 100%;
-            margin-left:8% ;
+            
             
         }
         .me{
@@ -1064,8 +1075,9 @@ top: 40px;
             height: 80%;
             display: flex;
             font-size: small;
+            right: 0;
         }
-
+       
         .wrapper .me h1 {
             display: flex;
             font-size: xx-large;
@@ -1225,6 +1237,14 @@ top: 40px;
     .armright {
         display: none;
     }
+    footer{
+        color: rgb(3, 3, 3);
+        align-items: center;
+        justify-content: center;
+        margin-left: 40%;
+        margin-top: 10%;
+        margin-bottom: 0%;
+    }
 }
 @media screen and (max-width: 722px) {
     .header ul li {
@@ -1239,14 +1259,14 @@ top: 40px;
     align-items: center;
     position: relative;
     margin-left: 2%;
+    right: 30px;
    
 }
 .common-icon{
     display:flex;
     position: relative;
-    top:14px;
     width: 40px;
-    margin-left:190px;
+    margin-left:19px;
  
 }
 .common-icon p{
