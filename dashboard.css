@@ -23,7 +23,7 @@ body{
 padding: 0 1.7rem;
 color: black;
 overflow: hidden;
-transition: all o.5s linear;
+transition: all 0.5s linear;
 background-color: #fff;
 border-radius:10px ;
 
@@ -55,6 +55,7 @@ margin-left: -4%;
     border-bottom: gray solid;
     border-radius: 4px;
     transition: all 0.5s ease-in-out;
+   
 }
 
 .menu li:hover{
@@ -252,6 +253,14 @@ margin-top:10% ;
     
 }
 
+.refresh {
+    color:black;
+    font-size: 14px;
+    text-decoration: none;
+    align-items: center;
+gap: 1.5rem;
+cursor: pointer;
+}
 /* ---------article------ */
 .articles{
     display: flex;
@@ -297,4 +306,30 @@ button{
 button:hover{
     background-color:  rgb(227, 138, 64);
     cursor: pointer;
+}
+.blog1{
+
+        background-color: rgba(207, 205, 204, 0.868);
+        width: 100%;
+        display: flex;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        padding: 10px 10px;
+        border-radius: 10px;
+        margin-left: -3%;
+    
+}
+.queries1{
+    background-color: rgba(207, 205, 204, 0.868);
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    margin-left: -3%;
 }
