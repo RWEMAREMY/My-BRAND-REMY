@@ -783,6 +783,9 @@ width: 30px;
   width: 100%;
     
 }
+.blog-container{
+padding-left: 20px;
+}
 
         form.contact label {
             background-color: #ffffff;
