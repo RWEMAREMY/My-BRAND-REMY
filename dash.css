@@ -138,17 +138,7 @@ margin-bottom: 1rem;
     padding: 2rem;
     border-radius: 10px;}
    
-/* .card-wrapper{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    align-content: center;
-    max-width: 300px; */
-    
-  
-   
-}
+
 .main--title{
     color: rgb(210, 206, 206);
     font-size: x-large;
@@ -416,7 +406,7 @@ button:hover{
     position: relative;
     width: 100%;
     top: 3px;
-    height: 90%;
+    height: 85%;
     margin-top: 0;
     border-radius: 10px;
 }
@@ -424,13 +414,13 @@ button:hover{
     display: flex;
     justify-content: center;
     align-items: center;
-margin-left: 190px;
+margin-left: 150px;
 }
 .payment--card p{
     display: flex;
     justify-content: center;
     align-items: center;
-margin-left:290px;
+margin-left:220px;
 margin-top: 3px;
 }
 
@@ -448,22 +438,89 @@ margin-top: 3px;
     display: flex;
     justify-content: center;
     align-items: center;
-margin-left: 190px;
+margin-left: 140px;
 margin-top: 0;
 }
 
-.graph{
-    
 
-    
-}
 
 .payment--cards p{
     display: flex;
     justify-content: center;
     align-items: center;
-margin-left:250px;
-margin-top: -20%;
+margin-top: -25%;
 font-size: x-large;
 }
+}
+@media (max-width:801px) {
+    .sidebar{
+        position: sticky;
+        padding-left: 100px;
+        bottom: 0;
+        /* width: 140px; */
+        height: 100vh;
+    
+    color: black;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: #fff;
+    border-radius:10px ;
+    
+    }
+    
+     
+}
+@media (max-width:690px) {
+    .sidebar{
+        position: sticky;
+        padding-left: 100px;
+        bottom: 0;
+        /* width: 140px; */
+        height: 120vh;
+    
+    color: black;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: #fff;
+    border-radius:10px ;
+    
+    }
+    
+     
+}
+@media (max-width:480px) {
+    .sidebar{
+        position: sticky;
+        padding-left: 100px;
+        bottom: 0;
+        /* width: 140px; */
+        height: 140vh;
+    
+    color: black;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: #fff;
+    border-radius:10px ;
+    
+    }
+    
+    
+}
+@media (max-width:396px) {
+    .sidebar{
+        position: sticky;
+        padding-left: 100px;
+        bottom: 0;
+        /* width: 140px; */
+        height: 190vh;
+    
+    color: black;
+    overflow: hidden;
+    transition: all 0.5s linear;
+    background-color: #fff;
+    border-radius:10px ;
+    
+    }
+    
+     
 }
