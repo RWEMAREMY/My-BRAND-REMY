@@ -44,10 +44,12 @@ contactus.addEventListener('submit',(e)=>{
       messageError.innerHTML = "your message should be atleast 10 characters";
     } else {
       messageError.innerHTML = "";
+      alert("sent")
+      window.location.href = "./index.html";
     }
 
       
-  
+    
 });
 
 Fname.value==='';

@@ -18,7 +18,7 @@ body{
     top: 0;
     left: 0;
     bottom: 0;
-    width: 140px;
+    width: 160px;
     height: 102vh;
 padding: 0 1.7rem;
 color: black;
@@ -28,10 +28,10 @@ background-color: #fff;
 border-radius:10px ;
 
 }
-.sidebar:hover{
+/* .sidebar:hover{
     width: 160px;
-    transition: 0.5s;
-}
+    
+} */
 
 .logo{
     height: 80px;

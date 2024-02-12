@@ -9,14 +9,12 @@ allblog.forEach((blog) => {
     return string.length > length ? string.slice(0, length) + "..." : string;
   }
   blogshtml += `  
-   
     <div class="blog-container "key=${blog.id} > 
         <div class="blog-wrapper ">
             <img src="./assets/blog image.png">
             <br>
             <h3>${blog.title}</h3>
             <br>
-            <t>${result}</t>
             <div class="blog-heart"><img src="./assets/heart.png">${blog.likes}</div>
            </div>
              <span id="delete" key=${blog.id}><i class="fa-solid fa-trash" style="color: #d11515;">
@@ -25,7 +23,6 @@ allblog.forEach((blog) => {
              <i class="fa-solid fa-arrows-rotate" style="color: #black;">
             </i></span>
            
-          
         </div>
        
     </div>  `;
@@ -63,8 +60,8 @@ editblog.forEach((editbutton) => {
   editbutton.addEventListener("click", (e) => {
     e.preventDefault();
     e.stopPropagation();
-    const id = e.target.getAttribute("key");
+    const id = e.target.closest(".blog-container").getAttribute("key");
     location.reload();
-    window.location.href = `./update.html?id=${id}`;
+    window.location.href =` ./update.html?id=${id}`;
   });
 });
