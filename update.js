@@ -30,7 +30,7 @@ formCreateBlog.addEventListener("submit", (e) => {
       // Form submission logic goes here
       console.log("Form submitted successfully!");
     }
-    // const contentTags = contentupdates.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
+    const contentTags = contentupdates.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
      
     const allBlog = JSON.parse(localStorage.getItem("blogs")) || [];
   
