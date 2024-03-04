@@ -49,7 +49,7 @@ if(email.match(pattern))
 {
 form.classList.add("valid");
 form.classList.remove("invalid");
-text.innerHTML="100%";
+text.innerHTML="";
 text.style.color="black";
 }
 else{

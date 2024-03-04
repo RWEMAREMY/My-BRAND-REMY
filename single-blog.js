@@ -15,17 +15,26 @@ ${selectblog.content}
     </p>
     <div class="like">
     <div class="likes">
-        <p> <img src="./assets/heart.png">4k</p>
+         <img src="./assets/heart.png" onclick="liking()"><p id="single-display"></p>
     </div>
+
     <div class="likes">
         <p> <img src="./assets/message.png">2k</p>
     </div>
 
 </div>
-    <h1>Comment</h1>
     
-       
+    <br><br><br><br>
+<h1>Comment</h1>   
     </div>
+  
 
 
     `;
+    var count=0;
+    var output=document.getElementById("single-display")
+    function liking(){
+        count+=1
+        output.innerHTML=count
+    }
+
