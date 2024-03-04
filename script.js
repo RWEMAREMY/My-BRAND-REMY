@@ -143,10 +143,12 @@ const scroll=()=>{
       blogs.scrollLeft = 0;
     }
 if(!hoovered){
-   blogs.scrollLeft+=600;
+   blogs.scrollLeft+=100;
+}else{
+   blogs.scrollLeft-=100;
 }
 }
-setInterval(scroll,2000);
+setInterval(scroll,70);
 
 // blogcontainer.addEventListener("mouseenter", ()=>{
    

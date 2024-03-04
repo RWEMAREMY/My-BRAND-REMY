@@ -9,6 +9,28 @@ const content=document.querySelector('.content');
 const uniqueId = uuidv4();
 const file=document.getElementById('files');
 
+
+// const imageInput = document.querySelector(".update-image");
+// const fileInput = document.querySelector("#image-file");
+// let imageUrl = "";
+
+// imageInput.addEventListener("click", () => {
+//   fileInput.click();
+// });
+
+// fileInput.addEventListener("change", (e) => {
+//   const file = e.target.files[0];
+//   const reader = new FileReader();
+
+//   reader.onloadend = () => {
+//     imageInput.style.backgroundImage = url(${reader.result});
+//     imageUrl = reader.result;
+//   };
+
+//   reader.readAsDataURL(file);
+// });
+
+
 form.addEventListener('submit',(e)=>{
 e.preventDefault();
 
@@ -22,7 +44,7 @@ const singleBlog = {
       id:singleId,
     title: title.value ,
     content:  Tags,
-    image: file,
+    image: file,//imageUrl
     createBy: "remy",
     comments: [],
     likes: 0,
