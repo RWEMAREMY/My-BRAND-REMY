@@ -24,6 +24,10 @@ form {
     padding-top: 30%;
 
 }
+.openmenu li{
+    display: none;
+    
+   }
 .log-in{
     display: flex;
     position: relative;
@@ -58,7 +62,19 @@ label {
     text-transform: uppercase;
     top: 200px;
 }
-
+.error{
+    color:rgb(7, 7, 7);
+    font-size: 15px; 
+    font-weight: 600;
+    margin-top:10px ;
+    background-color: rgb(235, 171, 171);
+    border-radius: 10px;
+    height: 40px;
+    max-width: fit-content;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 input {
     display: grid;
     justify-content: center;
@@ -66,7 +82,7 @@ input {
     height: 20px;
     border: #ffffff solid;
     border-radius: 10px;
-    margin-top: -40%;
+    margin-top: 0;
 
 
 

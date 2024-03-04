@@ -30,10 +30,14 @@ img{
 
 /* -----------likes_------------ */
 .like{
-    display: flex;
+    display:flex;
+    position: relative;
     float: left;
-    padding-left: 39%;
-    margin: 0  0 0 0;
+    padding-left: 10px;
+    margin-left: 0px;
+   
+    width: 20rem;
+
 }
 .likes{
 background-color: rgb(227, 222, 220);
@@ -44,7 +48,8 @@ float: right;
 border-radius: 8px;
 align-items: center;
 justify-content: center;
-margin-left: 5%;
+margin-left: 50px;
+
 margin-top: 14%;
 }
 .likes img{

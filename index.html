@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
     <link rel="stylesheet" href="index.css">
     <title>home</title>
 </head>
@@ -14,9 +14,12 @@
     <div class="arm">
         <img src="./assets/f-arm.png">
     </div>
+
     <div class="fixed-bar">
+        
     <nav class="header">
-        <ul>
+        <div class="openmenu"><i class="fa-solid fa-bars"></i></div>
+        <ul class="menu">
             <li><a href="index.html">Home</a></li>
             <li><a href="#me">About me</a></li>
             <li><a href="#contact us">Contact</a></li>
@@ -24,6 +27,7 @@
             <li><a href="log-in.html">log in</a></li>
         </ul>
     </nav>
+
 </div>
 
 
@@ -61,7 +65,7 @@
             </h3>
             <p>Frontend is my true passion and I really enjoy the whlie process of creating UIs,
                 from the first brainstorming, wireframes, mockups, design, all the way until the final product.</p>
-            <img src="./assets/sign.png">
+            <img src="./assets/sign.png" class="sign">
         </div>
     </div>
 
@@ -138,7 +142,7 @@
 
 
     <div class="blogs" id="blogger">
-        <a href="single-blog.html">
+        <!-- <a href="single-blog.html">
         <div class="blog-container " > 
             <div class="blog-wrapper ">
                 <img src="./assets/blog image.png">
@@ -150,6 +154,7 @@
             </div>
         </a>
         </div>
+        
 
    
 
@@ -322,7 +327,7 @@
 
 
 
-
+ -->
 
 
 
@@ -338,24 +343,44 @@
     <div class="armright">
         <img src="./assets/second arm.png">
     </div>
+   
 
-    <div class="form" id="contact us">
 
-        <form class="contact">
+    <div class="form" id="contactus">
+
+        <form  class="contact" id="form">
             <h1>I'm ready to Talk.....</h1>
-            <label>Name</label>
-            <input type="text" placeholder="name">
 
-            <label>email</label>
-            <input type="text" placeholder="rwewmk@32.gmail">
 
-            <label>message</label>
-            <textarea></textarea>
-           
-            <div class="common-icons">
+            <div class="contactname">
+            <label id="lab">Name</label>
+            <br>
+            <input type="text" placeholder="name"  id="Fname" onkeydown="fnamevalid()">
+            <div class="error" id="nameError"></div>
+            
+        </div>
+
+
+        <div class="contactemail">
+            <label id="lab">email</label>
+            <br>
+            <input type="text" placeholder="rwewmk@32.gmail" class="Email" id="emails" onkeydown="emailvalid()">
+            <div class="error"    id="errors" ></div>
+
+        </div>
+
+        <div class="contactmessage">
+            <label id="lab">message</label>
+            <br>
+            
+            <textarea id="textarea" placeholder="message" onkeydown="messagevalid()"></textarea>
+            <div class="error" id="messageError"></div>
+
+        </div>
+            <button class="common-icons" type="submit">
                 <p><img src="./assets/send icon.png"><b>SEND</b></p>
         
-            </div>
+            </button>
         </form>
      
     </div>
@@ -363,7 +388,13 @@
     </div>
     
     </div>
-   
+    <footer>Made with ❤️ by M.Rwema Remy</footer>
+ 
+
+       <script src="./script.js"></script>
+       <script src="./blogs.js"></script>
 </body>
-<footer>Made with ❤️ by M.Rwema Remy</footer>
+
+
+
 </html>
