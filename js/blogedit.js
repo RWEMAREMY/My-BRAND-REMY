@@ -1,7 +1,10 @@
 const container = document.querySelector("#blogge");
-const allblog = JSON.parse(localStorage.getItem("blogs")) || [];
+const url = "https://rwemaremy-my-brand-back-end.onrender.com";
 let blogshtml = "";
-allblog.forEach((blog) => {
+fetch(url + "/api/blogs")
+.then((res) => res.json())
+  .then((give) => {
+    give.forEach((blog) => {
   let length = 90;
   let string = blog.content;
   let result = addThreeDotsAfterLength(string, length);
@@ -9,13 +12,13 @@ allblog.forEach((blog) => {
     return string.length > length ? string.slice(0, length) + "..." : string;
   }
   blogshtml += `  
-    <div class="blog-container "key=${blog.id} > 
+    <div class="blog-container "key=${blog._id} > 
         <div class="blog-wrapper ">
-            <img src="./assets/blog image.png">
+            <img class="adminImgView" src=${blog.image}>
             <br>
             <h3>${blog.title}</h3>
             <br>
-            <div class="blog-heart"><img src="./assets/heart.png">${blog.likes}</div>
+            <div class="blog-heart"><img class="adminImgLikes" src="./assets/heart.png">${blog.likes}</div>
            </div>
              <span id="delete" key=${blog.id}><i class="fa-solid fa-trash" style="color: #d11515;">
             </i></span>
@@ -34,14 +37,13 @@ const blogger = document.querySelectorAll(".blog-container");
 blogger.forEach((blg) => {
   blg.addEventListener("click", (e) => {
     const id = e.target.closest(".blog-container").getAttribute("key");
-    window.location.href = `./single-blog.html?id=${id}`;
+    
   });
 });
 
 const removeBlog = document.querySelectorAll("#delete");
 removeBlog.forEach((removeButton) => {
   removeButton.addEventListener("click", (e) => {
-    const allBlogs = JSON.parse(localStorage.getItem("blogs")) || [];
     e.preventDefault();
     e.stopPropagation();
 
@@ -64,4 +66,5 @@ editblog.forEach((editbutton) => {
     location.reload();
     window.location.href =` ./update.html?id=${id}`;
   });
+});
 });
