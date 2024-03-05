@@ -100,23 +100,35 @@ img {
 }
 .comment-box {
   display: grid;
-  height: 100px;
+ 
 
-  width: 500px;
+  width: 50rem;
   border-radius: 15px;
   padding-top: 10px;
   justify-content: center;
   align-items: center;
-  background-color: #0101019d;
+  
   cursor: pointer;
 }
-.comment-box:hover {
+/* .comment-box:hover {
   cursor: pointer;
   color: white;
   background-color: black;
   height: 110px;
-}
+} */
+.comment-content{
+  background-color: rgb(227, 126, 126);
+  width:500px;
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 15px;
+  padding:20px ;
+  align-items: center;
+  justify-content: center;
+  font-size: larger;
+  font-weight:600;
 
+}
 .contact {
   display: flex;
   position: relative;
@@ -126,7 +138,10 @@ img {
   left: -4%;
   flex-direction: column;
 }
-
+.comment-header{
+  
+  padding-left: 20rem;
+}
 .contact h1 {
   top: -25%;
   left: 0;
@@ -241,14 +256,13 @@ footer {
   .comment-box {
     display: grid;
     height: 85%;
-    margin-left: 0;
+  
     margin-top: 0%;
-    width: 500px;
+    width: 400px;
     border-radius: 15px;
-    padding: 10px 3px;
+    padding: 1px 3px;
     justify-content: center;
     align-items: center;
-    background-color: #4f47476e;
   }
 
   .contact {
