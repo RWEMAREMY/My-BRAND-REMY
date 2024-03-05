@@ -57,10 +57,3 @@ fetch(allblog + `/api/blogs/${blogId}`)
   })
   .catch((error) => console.error("Error fetching blog:", error));
 
-var count = 0;
-var output = document.getElementById("single-display");
-
-function liking() {
-  count += 1;
-  output.innerHTML = count;
-}
