@@ -9,15 +9,16 @@ const theblog = document.querySelector(".queries1");
 // Fetch blog details
 fetch(allblog + `/api/queries`)
   .then((res) => res.json())
-  .then((give) => {
+  .then((query) => {
     theblog.innerHTML = `
+    <div class="cards"> 
           <div class="queries1">
-            <h3>${give.author}</h3>
-            <h3>${give.email}</h3>
-            <p>${give.content}</p>
-            <h3>${give.date}</h3>
+            <h3>${query.author}</h3>
+            <h3>${query.email}</h3>
+            <p>${query.content}</p>
+            <h3>${query.date}</h3>
           </div>
         </div>
-      </div>`;
+     `;
   })
   .catch((error) => console.error("Error fetching blog details:", error));
