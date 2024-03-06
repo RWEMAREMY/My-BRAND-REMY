@@ -45,6 +45,21 @@ body {
   display: flex;
   font-weight: bolder;
 }
+.messagestitle{
+  color: hwb(0 13% 87%);
+  font-size: 15px;
+ 
+  margin-top: 10px;
+ 
+  border-radius: 10px;
+  height: 10px;
+  max-width: fit-content;
+  justify-content: center;
+  align-items: center;
+ 
+  font-weight: bolder;
+ 
+}
 .blogbtn {
   display: flex;
 }
