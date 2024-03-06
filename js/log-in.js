@@ -23,19 +23,53 @@ login.addEventListener('submit',(e)=>{
     }
     else{
        logNameErrors.innerHTML="";
+    if(logpassword.value.trim()===""){
+         logpasswordErrors.innerHTML='please enter the message!';
+         return false;
+      }else if (logpassword.value.length <4) {
+         logpasswordErrors.innerHTML = "your password should be atleast 4 characters and above!";
+         return false;
+        } else {
+           // window.location.href="dashboard.html" 
+         logpasswordErrors.innerHTML = "";
+         const inEmail = logName.value.trim();
+         const firstPass = logpassword.value.trim();
+         const body = { email: inEmail, 
+            password: firstPass 
+        };
+        function loginUser(body) {
+         // Assuming you're using fetch for API calls
+         fetch('https://rwemaremy-my-brand-back-end.onrender.com/api/login', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify(body),
+         })
+         .then(response => {
+           if (response.ok) {
+             // User logged in successfully
+             console.log("User logged in successfully");
+             alert("logged in successfully")
+             window.location.href = "dashboard.html";
+           } else {
+             // Login failed
+             console.error("Login failed");
+             alert("oops invalid credentials!!!")
+           }
+         })
+         .catch(error => {
+           console.error("Error:", error);
+        
+         });
+       }
+       
+       loginUser(body);
+       }
     }
  
        
-    if(logpassword.value.trim()===""){
-       logpasswordErrors.innerHTML='please enter the message!';
-       return false;
-    }else if (logpassword.value.length <4) {
-       logpasswordErrors.innerHTML = "your password should be atleast 4 characters and above!";
-       return false;
-      } else {
-         window.location.href="dashboard.html" 
-       logpasswordErrors.innerHTML = "";
-     }
+    
     
 
  });
