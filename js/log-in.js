@@ -42,11 +42,11 @@ login.addEventListener("submit", (e) => {
           .then((response) => {
             if (response.status) {
               // User logged in successfully
+              const resData= response.token
+              localStorage.setItem("token", resData);
               console.log("User logged in successfully");
               alert("logged in successfully");
-              const resData= response.token
-             localStorage.setItem("token", resData);
-            
+              window.location.href = "dashboard.html";
             } else {
               // Login failed
               console.error("Login failed");
@@ -57,7 +57,7 @@ login.addEventListener("submit", (e) => {
             console.error("Error:", error);
           });
       }
-  window.location.href = "dashboard.html";
+ 
       loginUser(body);
     }
   }

@@ -8,10 +8,21 @@
     <title>Sign up</title>
   </head>
   <body>
-    <h1>Login-Page</h1>
+    <h1>SIGNUP</h1>
     <br />
     <div class="log-in">
       <form action="dashboard.html" id="login">
+        <div class="loginname">
+          <label>Name:</label>
+          <br />
+          <input
+            type="text"
+            placeholder="Name"
+            id="logName"
+            onkeydown="uservalid()"
+          />
+          <div class="error" id="logNameErrors"></div>
+        </div>
         <div class="loginname">
           <label>Email:</label>
           <br />
@@ -38,10 +49,10 @@
             onkeydown="passwordvalid()"
           ></div>
         </div>
-        <input type="submit" value="log in" name="" class="log" />
+        <input type="submit" value="signup" name="" class="log" />
 
         <p>
-          if you dont have an account <a href="./signup.html">sign up</a>
+          if you dont have an account <a href="/log-in.html">login</a>
           <button class="backbtn"><a href="index.html">BACK</a></button>
         </p>
 
