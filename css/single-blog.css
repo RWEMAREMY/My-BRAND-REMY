@@ -100,14 +100,13 @@ img {
 }
 .comment-box {
   display: grid;
- 
 
   width: 50rem;
   border-radius: 15px;
   padding-top: 10px;
   justify-content: center;
   align-items: center;
-  
+
   cursor: pointer;
 }
 /* .comment-box:hover {
@@ -116,18 +115,17 @@ img {
   background-color: black;
   height: 110px;
 } */
-.comment-content{
+.comment-content {
   background-color: rgb(227, 126, 126);
-  width:500px;
+  width: 500px;
   display: flex;
   flex-wrap: wrap;
   border-radius: 15px;
-  padding:20px ;
+  padding: 20px;
   align-items: center;
   justify-content: center;
   font-size: larger;
-  font-weight:600;
-
+  font-weight: 600;
 }
 .contact {
   display: flex;
@@ -138,8 +136,7 @@ img {
   left: -4%;
   flex-direction: column;
 }
-.comment-header{
-  
+.comment-header {
   padding-left: 20rem;
 }
 .contact h1 {
@@ -166,7 +163,17 @@ img {
   background-color: white;
   z-index: 1;
 }
-
+.send-comment {
+  margin-bottom: 3rem;
+  font-weight: 600;
+  border-radius: 15px;
+  width: 90px;
+  height: 30px;
+  margin-left: 2rem;
+}
+.send-comment:hover{
+  background-color: rgba(236, 105, 18, 0.769);
+}
 .contact input {
   display: flex;
   position: relative;
@@ -256,7 +263,7 @@ footer {
   .comment-box {
     display: grid;
     height: 85%;
-  
+
     margin-top: 0%;
     width: 400px;
     border-radius: 15px;
