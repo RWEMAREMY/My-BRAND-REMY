@@ -129,6 +129,7 @@ async function createBlog() {
     body: formData,
   });
   if (!response.ok) {
+    window.location.href = "log-in.html";
     throw new Error(response.statusText);
   }
   const data = await response.json();

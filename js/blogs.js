@@ -33,7 +33,7 @@ blogger.forEach((blg) => {
     window.location.href = `./single-blog.html?id=${id}`;
   });
 });
-      console.log(blog);
+      // console.log(blog);
     });
   });
 
