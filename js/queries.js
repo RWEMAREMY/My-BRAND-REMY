@@ -2,23 +2,32 @@ const currentUrl = new URL(window.location.href);
 const searchParams = new URLSearchParams(currentUrl.search);
 const blogId = searchParams.get("id");
 
-const allblog = "https://rwemaremy-my-brand-back-end.onrender.com";
+const url = "https://rwemaremy-my-brand-back-end.onrender.com";
 
-const theblog = document.querySelector(".queries1");
+
 
 // Fetch blog details
-fetch(allblog + `/api/queries`)
+fetch(url + `/api/queries`)
   .then((res) => res.json())
   .then((query) => {
-    theblog.innerHTML = `
-    <div class="cards"> 
-          <div class="queries1">
-            <h3>${query.author}</h3>
-            <h3>${query.email}</h3>
-            <p>${query.content}</p>
-            <h3>${query.date}</h3>
-          </div>
+    console.log(query);
+    const theblog = document.querySelector(".card--wrapper");
+ query.forEach(element => {
+  const queryElement= document.createElement("div");
+  queryElement.innerHTML = `
+  <div class="cards"> 
+        <div class="queries1">
+       <div> <p> ${element.content}</p>  <br>
+        
+       <div> <h3>${element.author} /  ${element.email}</h3> </div>
         </div>
-     `;
+        
+      </div>
+     
+   `;
+   theblog.appendChild(queryElement);
+ });
+    // console.log(theblog);
+
   })
   .catch((error) => console.error("Error fetching blog details:", error));
