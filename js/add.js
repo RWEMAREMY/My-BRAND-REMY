@@ -109,7 +109,10 @@ async function createBlog() {
   const titles = title.value;
   //console.log(titles);
   const token = localStorage.getItem("token");
-  console.log(token);
+  if (!token) {
+    window.location.href = 'log-in.html';
+    return; 
+}
   if (!fileInput.files || !fileInput.files[0]) {
     console.error("Please select image");
     return;
@@ -128,11 +131,12 @@ async function createBlog() {
     },
     body: formData,
   });
-  if (!response.ok) {
-    window.location.href = "log-in.html";
+
+  if (!response.ok ) {
     throw new Error(response.statusText);
+  } else {
+    // const data = await response.json();
+    alert("Blog created successfully!!");
+    window.location.href = "article.html";
   }
-  const data = await response.json();
-  alert("Blog created successfully!!");
-  window.location.href = "article.html";
 }

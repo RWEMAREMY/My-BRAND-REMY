@@ -22,7 +22,7 @@ fetch(allblog + `/api/blogs/${blogId}`)
                     <img src="./assets/heart.png" ><p id="single-display">${give.likes}</p>
                 </div>
                 <div class="likes comment ">
-                    <p> <img src="./assets/message.png"></p>
+                     <img src="./assets/message.png"><p id="comment-number"></p>
                 </div>
             </div>
             <br><br><br><br>
@@ -36,6 +36,7 @@ fetch(allblog + `/api/blogs/${blogId}`)
     const allblog = "https://rwemaremy-my-brand-back-end.onrender.com";
     theblog.addEventListener("click", function (event) {
       const target = event.target;
+      location.reload();
       if (target.classList.contains("likes-btn")) {
         const blogId = searchParams.get("id");
         fetch(
@@ -49,7 +50,6 @@ fetch(allblog + `/api/blogs/${blogId}`)
         if (singleDisplay) {
           singleDisplay.textContent = theblog.blog.likes.toString();
           count++;
-          location.reload();
           localStorage.setItem("count", `${count}`);
         }
       }
@@ -58,18 +58,26 @@ fetch(allblog + `/api/blogs/${blogId}`)
     theblog.addEventListener("click", function (event) {
       const target = event.target;
       if (target.classList.contains("comment")) {
-        //  window.location.href = "#comment-box";
+        location.href = "#comment-box";
         console.log("clicked");
+      }
+      const commentnumber = document.getElementById("comment-number");
+      let count = 0;
+      if (commentnumber) {
+        // commentnumber.textContent = theblog.blog.comments.toString();
+        // count++;
+        // localStorage.setItem("count", `${count}`);
       }
     });
     // Fetch comments
-    const id = searchParams.get("id");
-    fetch(allblog + `/api/blogs/${id}/comments`)
+
+    fetch(allblog + `/api/blogs/${blogId}/comments`)
       .then((res) => res.json())
       .then((comments) => {
         const commentBox = document.getElementById("comment-box");
         comments.forEach((comment) => {
           const commentElement = document.createElement("div");
+          console.log(comment);
           commentElement.innerHTML = `
          
           <div class="comment-box">
@@ -115,8 +123,6 @@ fetch(allblog + `/api/blogs/${blogId}`)
           console.error("Error:", error);
         });
     }
-
-    // Replace '123' with the actual ID of the blog post
   })
 
   .catch((error) => console.error("Error fetching blog:", error));
