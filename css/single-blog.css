@@ -171,9 +171,10 @@ img {
   height: 30px;
   margin-left: 2rem;
 }
-.send-comment:hover{
+.send-comment:hover {
   background-color: rgba(236, 105, 18, 0.769);
 }
+
 .contact input {
   display: flex;
   position: relative;
@@ -187,6 +188,17 @@ img {
   border: 2px solid darkgray;
   outline: 0;
   top: -25%;
+}
+.space {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  left: 5%;
+  padding-left: 1%;
+  width: 30vw;
+  height: 150px;
+  border-radius: 10px;
 }
 footer {
   color: gray;
