@@ -110,9 +110,9 @@ async function createBlog() {
   //console.log(titles);
   const token = localStorage.getItem("token");
   if (!token) {
-    window.location.href = 'log-in.html';
-    return; 
-}
+    window.location.href = "log-in.html";
+    return;
+  }
   if (!fileInput.files || !fileInput.files[0]) {
     console.error("Please select image");
     return;
@@ -132,7 +132,7 @@ async function createBlog() {
     body: formData,
   });
 
-  if (!response.ok ) {
+  if (!response.ok) {
     throw new Error(response.statusText);
   } else {
     // const data = await response.json();

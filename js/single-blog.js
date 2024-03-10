@@ -32,9 +32,9 @@ fetch(allblog + `/api/blogs/${blogId}`)
             </div>
         </div>
     `;
-
+const countelement=document.getElementById("single-display");
     const allblog = "https://rwemaremy-my-brand-back-end.onrender.com";
-    theblog.addEventListener("click", function (event) {
+    theblog.addEventListener("click", async function (event) {
       const target = event.target;
       location.reload();
       if (target.classList.contains("likes-btn")) {
@@ -45,13 +45,8 @@ fetch(allblog + `/api/blogs/${blogId}`)
             method: "POST",
           }
         );
-        const singleDisplay = document.getElementById("single-display");
-        let count = 0;
-        if (singleDisplay) {
-          singleDisplay.textContent = theblog.blog.likes.toString();
-          count++;
-          localStorage.setItem("count", `${count}`);
-        }
+        const data =await response.json
+        countelement.textContent=data.likes
       }
     });
 

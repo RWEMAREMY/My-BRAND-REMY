@@ -5,8 +5,10 @@ const searchParams = new URLSearchParams(currentUrl.search);
 const blogId = searchParams.get("id");
 const titleupdate = document.querySelector("#newtitleupdate");
 const contentupdates = document.querySelector(".contentupdate");
+const contents = document.getElementById("content");
+let blogshtml = "";
 // titleupdate.value = selectblog.title;
-// contentupdates.value = selectblog.content;
+//  contentupdates.value = selectblog.content;
 
 formCreateBlog.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -19,31 +21,94 @@ formCreateBlog.addEventListener("submit", (e) => {
     titleError.textContent = "Title is required.";
   }
 
-  if (contentupdates.value === "") {
+  if (contents.value === "") {
     isValid = false;
     contentError.textContent = "Content is required.";
   }
 
-
-
-
-
-
-  
   if (isValid) {
+    const updatedData = {
+      title: titleupdate.value,
+      content: contents.value,
+    };
+
     fetch(
-      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}`,
+      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`,
       {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(body),
+        body: JSON.stringify(updatedData),
       }
     )
-      .then((res) => res.json())
-      .then((give) => {
-        console.log(give);
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to update blog");
+        }
+        return res.json();
+      })
+      .then((updatedBlog) => {
+        // Handle the updated blog data here
+        console.log("Blog updated successfully:", updatedBlog);
+        // For example, you can update the UI with the updated data
+        window.location.href = "article.html";
+      })
+      .catch((error) => {
+        console.error("Error updating blog:", error);
+        // Handle error, show error message to the user, etc.
       });
   }
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+const blog = urlParams.get("id");
+console.log(blog);
+// Fetch the specific blog's details using the blog ID
+fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((blog) => {
+    // Populate the input fields with the existing data
+    document.getElementById("newtitleupdate").value = blog.title;
+    document.getElementById("content").value = blog.content;
+
+    // Store the blog object for reference when updating
+    window.blog = blog;
+  })
+
+  .catch((error) => console.error("Error fetching blog details:", error));
+
+// Function to update the blog with edited data
+function updateBlog() {
+  const updatedData = {
+    title: document.getElementById("title").value,
+    content: document.getElementById("content").value,
+  };
+
+  fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(updatedData),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      showToast("Blog edited successfully!");
+      window.location.href = "update.html";
+
+      title.value = "";
+      rich.value = "";
+    })
+    .catch((error) => console.error("Error editing blog:", error));
+}

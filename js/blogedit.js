@@ -1,7 +1,6 @@
 const container = document.querySelector("#blogge");
 const url = "https://rwemaremy-my-brand-back-end.onrender.com";
 let blogshtml = "";
-
 fetch(url + "/api/blogs")
   .then((res) => res.json())
   .then((give) => {
@@ -15,7 +14,7 @@ fetch(url + "/api/blogs")
           ? string.slice(0, length) + "..."
           : string;
       }
-
+      container.setAttribute("key", blog._id);
       blogshtml += `  
       <div class="blog-container" key=${blog._id}> 
           <div class="blog-wrapper">
@@ -78,23 +77,13 @@ fetch(url + "/api/blogs")
         });
     };
 
-    const editblog = document.querySelectorAll(".update-blog");
-    editblog.forEach((editbutton) => {
-      editbutton.addEventListener("click", (e) => {
-        const update = e.target.closest(".update-blog");
-        if (update) {
-          const id = update.getAttribute("key");
-          updateblog(id);
-          // Use the id as needed
-        }else{
-          console.error(
-            "No blog container found in the clicked element chain."
-          );
-        }
-        }
-      
-        // Redirect to update page with id
-      );
+    const editButtons = document.querySelectorAll(".update-blog");
+    editButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const blogId = button.getAttribute("key");
+        console.log(blogId);
+        window.location.href = `update.html?id=${blogId}`; // Redirect to the edit page with the blogId as a query parameter
+      });
     });
-
-  });
+  })
+  .catch((error) => console.error("Error fetching blogs:", error));
