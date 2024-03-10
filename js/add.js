@@ -5,7 +5,7 @@ const titlerror = document.querySelector(".messagestitle");
 const form = document.querySelector("#form");
 const send = document.getElementById("send");
 const title = document.querySelector("#title");
-const content = document.querySelector(".content");
+const content = quill.getText();
 const uniqueId = uuidv4();
 const fileInput = document.getElementById("files");
 
@@ -103,9 +103,10 @@ form.addEventListener("submit", (e) => {
 });
 async function createBlog() {
   //console.log(content.value);
-  const contentTags = content.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
-  const contents = contentTags;
+  // const contentTags = content.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
+  // const contents = contentTags;
   //console.log(contents);
+  const content = quill.getText().trim();
   const titles = title.value;
   //console.log(titles);
   const token = localStorage.getItem("token");
@@ -119,7 +120,7 @@ async function createBlog() {
   }
   const formData = new FormData();
   formData.append("title", titles);
-  formData.append("content", contents);
+  formData.append("content", content);
   formData.append("image", fileInput.files[0]);
 
   const url = "https://rwemaremy-my-brand-back-end.onrender.com";
