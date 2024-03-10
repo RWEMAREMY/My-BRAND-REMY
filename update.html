@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>  
+    <!-- <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>   -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
     <title>update</title>
 
 </head>
@@ -66,8 +67,8 @@
 <input type="file" id="files"/>
 
     <div class="textarea ">
-        <textarea name="content" class="contentupdate" id="content" > </textarea>
-     
+        <!-- <textarea name="content" class="contentupdate" id="content" > </textarea> -->
+        <div id="editor"></div>
 <div class="messages" id="message"></div>
 
 
@@ -89,10 +90,18 @@
 <script src="./js/update.js" type="module"></script>
 <!-- <script src="./ckeditor/ckeditor.js" ></script> -->
 
-<script>
+<!-- <script>
     CKEDITOR.replace('content');
 
-</script>
+</script> -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+
+
+    <script>
+        const quill = new Quill('#editor', {
+          theme: 'snow'
+        });
+      </script>
 </body>
 
 </html>

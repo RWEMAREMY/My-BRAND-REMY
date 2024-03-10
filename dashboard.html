@@ -39,7 +39,7 @@
         <li class="logout">
             <button>
             <a href="#"><i class="fa-solid fa-right-from-bracket"></i></a>
-            <span>logout</span></button>
+            <span onclick="logoutUser()">logout</span></button>
         </li>
     </ul>
 </div>
@@ -65,10 +65,10 @@
     <div class="cards"> 
     <div class="card--wrapper">
       <div class="payment--card">
-<div class="amount">
-    <span class="title">
+<div class="amount" id="blogscount">
+    <!-- <span class="title">
         <img src="./assets/dash1.svg"><p>BLOGS <br>1</p>
-    </span>
+    </span> -->
 </div>
       </div>  
     </div>
@@ -91,10 +91,10 @@
 
       <div class="card--wrapper">
         <div class="payment--card">
-  <div class="amount">
-      <span class="title">
-          <img src="./assets/dash3.png"><p>visitors <br>123</p>
-      </span>
+  <div class="amount"id="Queriescount" >
+      <!-- <span class="title">
+          <img src="./assets/dash3.png"><p>querries<br>123</p>
+      </span> -->
   </div>
         </div>  
       </div>
@@ -133,6 +133,7 @@
 </div>
 
 <script src="./js/connect.js"></script>
+
 </body>
 
 

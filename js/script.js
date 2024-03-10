@@ -46,7 +46,6 @@ contactus.addEventListener("submit", (e) => {
   } else {
     messageError.innerHTML = "";
     alert("sent");
-    window.location.href = "./index.html";
   }
 
   var Qname = Fname.value.trim();
@@ -58,9 +57,8 @@ contactus.addEventListener("submit", (e) => {
     email: Qemail,
     content: Qtext,
   };
-  console.log(data);
+
   function createQueries(data) {
-    // const link = "https://rwemaremy-my-brand-back-end.onrender.com";
     fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/queries`, {
       method: "POST",
       headers: {
@@ -71,16 +69,18 @@ contactus.addEventListener("submit", (e) => {
       .then((response) => {
         if (response.ok) {
           console.log("Query created successfully");
+          // Reload the page after the query has been successfully created
+          window.location.reload();
         } else {
-          console.error("creating a query failed");
+          console.error("Creating a query failed");
         }
       })
       .catch((error) => {
         console.error("Error:", error);
       });
   }
-  createQueries(data);
 
+  createQueries(data);
 });
 
 Fname.value === "";
@@ -154,20 +154,20 @@ function messagevalid() {
   }
 }
 
-  //slider------------------------------------------
-  var hoovered = false;
+//slider------------------------------------------
+var hoovered = false;
 
-  const scroll = () => {
-    if (blogs.scrollLeft + blogs.clientWidth >= blogs.scrollWidth) {
-      blogs.scrollLeft = 0;
-    }
-    if (!hoovered) {
-      blogs.scrollLeft += 100;
-    } else {
-      blogs.scrollLeft -= 100;
-    }
-  };
-  setInterval(scroll, 70);
+const scroll = () => {
+  if (blogs.scrollLeft + blogs.clientWidth >= blogs.scrollWidth) {
+    blogs.scrollLeft = 0;
+  }
+  if (!hoovered) {
+    blogs.scrollLeft += 100;
+  } else {
+    blogs.scrollLeft -= 100;
+  }
+};
+setInterval(scroll, 70);
 
 // blogcontainer.addEventListener("mouseenter", ()=>{
 

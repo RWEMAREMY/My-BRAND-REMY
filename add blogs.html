@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
-    <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>  
+    <!-- <script src="https://cdn.ckeditor.com/4.19.1/standard/ckeditor.js"></script>   -->
+    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet">
     <title>add</title>
 
 </head>
@@ -67,8 +68,8 @@
 <input type="file" id="files" name="image"/>
 
     <div class="textarea ">
-        <textarea name="content" class="content" id="textarea" > </textarea>
-     
+        <!-- <textarea name="content" class="content" id="textarea editor" > </textarea> -->
+        <div name="content" id="editor" class="content"></div>
 <div class="messages" id="message"></div>
 
 
@@ -79,7 +80,7 @@
 
 </div>
         </div>
-
+   
             
          
 
@@ -98,10 +99,18 @@
 <script src="./js/add.js" type="module"></script>
 <!-- <script src="./ckeditor/ckeditor.js" ></script> -->
 
-<script>
+<!-- <script>
     CKEDITOR.replace('content');
 
-</script>
+</script> -->
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
+
+
+    <script>
+        const quill = new Quill('#editor', {
+          theme: 'snow'
+        });
+      </script>
 </body>
 
 </html>

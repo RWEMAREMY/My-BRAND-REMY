@@ -4,15 +4,15 @@ const currentUrl = new URL(window.location.href);
 const searchParams = new URLSearchParams(currentUrl.search);
 const blogId = searchParams.get("id");
 const titleupdate = document.querySelector("#newtitleupdate");
-const contentupdates = document.querySelector(".contentupdate");
-const contents = document.getElementById("content");
+// const contentupdates = document.querySelector(".contentupdate");
+const contents = quill.getText();
 let blogshtml = "";
 // titleupdate.value = selectblog.title;
 //  contentupdates.value = selectblog.content;
 
 formCreateBlog.addEventListener("submit", (e) => {
   e.preventDefault();
-  e.stopPropagation();
+  // e.stopPropagation();
 
   let isValid = true;
 
@@ -29,7 +29,8 @@ formCreateBlog.addEventListener("submit", (e) => {
   if (isValid) {
     const updatedData = {
       title: titleupdate.value,
-      content: contents.value,
+      // content: contents.value,
+      content:quill.getText().trim(),
     };
 
     fetch(
@@ -75,8 +76,8 @@ fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`)
   .then((blog) => {
     // Populate the input fields with the existing data
     document.getElementById("newtitleupdate").value = blog.title;
-    document.getElementById("content").value = blog.content;
-
+    // contents.value = blog.content;
+    quill.setText(blog.content);
     // Store the blog object for reference when updating
     window.blog = blog;
   })
@@ -85,9 +86,10 @@ fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`)
 
 // Function to update the blog with edited data
 function updateBlog() {
-  const updatedData = {
+  const updateData = {
     title: document.getElementById("title").value,
-    content: document.getElementById("content").value,
+    // content: contents.value,
+    content: quill.getText(),
   };
 
   fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`, {
@@ -95,7 +97,7 @@ function updateBlog() {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(updatedData),
+    body: JSON.stringify(updateData),
   })
     .then((response) => {
       if (!response.ok) {

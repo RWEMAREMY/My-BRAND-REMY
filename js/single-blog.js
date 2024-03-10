@@ -32,11 +32,12 @@ fetch(allblog + `/api/blogs/${blogId}`)
             </div>
         </div>
     `;
-const countelement=document.getElementById("single-display");
-    const allblog = "https://rwemaremy-my-brand-back-end.onrender.com";
+
+    const countelement = document.getElementById("single-display");
+    const allblogs = "https://rwemaremy-my-brand-back-end.onrender.com";
     theblog.addEventListener("click", async function (event) {
+      window.location.reload();
       const target = event.target;
-      location.reload();
       if (target.classList.contains("likes-btn")) {
         const blogId = searchParams.get("id");
         fetch(
@@ -45,8 +46,8 @@ const countelement=document.getElementById("single-display");
             method: "POST",
           }
         );
-        const data =await response.json
-        countelement.textContent=data.likes
+        const data = await response.json;
+        countelement.textContent = data.likes;
       }
     });
 
@@ -72,7 +73,7 @@ const countelement=document.getElementById("single-display");
         const commentBox = document.getElementById("comment-box");
         comments.forEach((comment) => {
           const commentElement = document.createElement("div");
-          console.log(comment);
+
           commentElement.innerHTML = `
          
           <div class="comment-box">
@@ -85,39 +86,77 @@ const countelement=document.getElementById("single-display");
           commentBox.appendChild(commentElement);
         });
       })
+
       .catch((error) => console.error("Error fetching comments:", error));
-
-    const data = {
-      name: Names,
-      email: email,
-      content: content,
-    };
-
-    function postComment(blogId, data) {
-      // Assuming you're using fetch for API calls
-      fetch(
-        `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      )
-        .then((response) => {
-          if (response.ok) {
-            // Comment created successfully
-            console.log("Comment created successfully");
-          } else {
-            // Failed to create comment
-            console.error("Failed to create comment");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
   })
-
   .catch((error) => console.error("Error fetching blog:", error));
+function validateForm() {
+  const nameInput = document.getElementById("name");
+  const emailInput = document.getElementById("email");
+  const messageInput = document.getElementById("message");
+
+  if (
+    nameInput.checkValidity() &&
+    emailInput.checkValidity() &&
+    messageInput.checkValidity()
+  ) {
+    return true; // Proceed with form submission if all fields are valid
+  } else {
+    // If any field is invalid, display appropriate error messages
+    if (!nameInput.checkValidity()) {
+      alert("Please enter your name.");
+    }
+    if (!emailInput.checkValidity()) {
+      alert("Please enter a valid email address.");
+    }
+    if (!messageInput.checkValidity()) {
+      alert("Please enter your message.");
+    }
+    return false; // Prevent form submission
+  }
+}
+
+const names = document.querySelector(".name");
+const emails = document.querySelector(".email");
+const messages = document.querySelector(".messages");
+const form = document.querySelector(".contact");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  var Cname = names.value.trim();
+  var Cemail = emails.value.trim();
+  var Cmessage = messages.value.trim();
+  const data = {
+    name: Cname,
+    email: Cemail,
+    content: Cmessage,
+  };
+  console.log(blogId);
+  function postComment(data) {
+    // Assuming you're using fetch for API calls
+    fetch(
+      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    )
+      .then((response) => {
+        if (response.ok) {
+          // Comment created successfully
+          console.log("Comment created successfully");
+          window.location.reload();
+        } else {
+          // Failed to create comment
+          console.error("Failed to create comment");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+  postComment(data);
+});

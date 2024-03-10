@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/single-blog.css">
+    
     <title>blog</title>
 </head>
 
@@ -118,26 +119,25 @@
 
             </div> -->
         </div>
-        <div class="form">
+        <div class="form" id="forms">
 
-            <form class="contact">
+            <form class="contact" onsubmit="return validateForm()">
                 <br>
                 <h1>Comment</h1>
-                <label>name</label>
-                <input class="name">
-
-                <label>Email</label>
-                <input type="text" placeholder="rwemaremy21@gmail.com">
-              
-                <label>message</label>
-                <textarea class="message space"></textarea>
+            
+                <label for="name">Name</label>
+                <input type="text" class="name" id="name" required>
+            
+                <label for="email">Email</label>
+                <input type="email" class="email" id="email" placeholder="rwemaremy21@gmail.com" required="">
+            
+                <label for="message">Message</label>
+                <textarea class="messages space" id="message" required></textarea>
+            
                 <br>
-                <button class="send-comment">send</button>
-              
-        </div>
-        
-     
-        </form>
+                <button type="submit" class="send-comment">Send</button>
+            </form>
+            
       
     </div>
  
