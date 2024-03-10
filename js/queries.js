@@ -29,7 +29,20 @@ fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/queries`)
    `;
       theblog.appendChild(queryElement);
     });
-  
+
     // console.log(theblog);
   })
   .catch((error) => console.error("Error fetching blog details:", error));
+
+function checkAuthentication() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    // Redirect to login page if token is not present
+    window.location.href = "/log-in.html";
+  }
+}
+
+// Call checkAuthentication when the dashboard page loads
+window.addEventListener("DOMContentLoaded", () => {
+  checkAuthentication();
+});

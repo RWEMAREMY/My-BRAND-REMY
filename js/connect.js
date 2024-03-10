@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then((blogs) => {
       const totalBlogs = blogs.length;
-     
+
       const blogElement = document.createElement("div");
       blogElement.innerHTML = `
         <span class="title">
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     .then((queries) => {
       const totalQueries = queries.length;
-      
+
       const blogElement = document.createElement("div");
       blogElement.innerHTML = `
       <span class="title">
@@ -89,4 +89,25 @@ document.addEventListener("DOMContentLoaded", function () {
       blogsContainer.appendChild(blogElement);
     })
     .catch((error) => console.error("Error fetching blogs:", error));
+});
+
+// Function to logout
+function logoutUser() {
+  // Clear token from local storage
+  localStorage.removeItem("token");
+  // Redirect to login page
+  window.location.href = "/log-in.html";
+}
+
+function checkAuthentication() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    // Redirect to login page if token is not present
+    window.location.href = "/log-in.html";
+  }
+}
+
+// Call checkAuthentication when the dashboard page loads
+window.addEventListener("DOMContentLoaded", () => {
+  checkAuthentication();
 });
