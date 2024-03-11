@@ -67,7 +67,7 @@ fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/queries`)
       })
         .then((response) => {
           if (response.ok) {
-            console.log("query deleted successfully");
+            alert("query deleted successfully");
             location.reload();
           } else {
             console.error("Error deleting query:", response.statusText);
