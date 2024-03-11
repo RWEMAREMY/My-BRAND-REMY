@@ -14,7 +14,7 @@ html {
 }
 
 body {
-  background-color: white;
+  background-color: #fff;
   display: inline-table;
   width: 100vw;
   height: 100vh;
@@ -752,7 +752,6 @@ textarea {
     align-items: center;
     justify-content: center;
   }
- 
 }
 @media screen and (max-width: 413px) {
   .form {
