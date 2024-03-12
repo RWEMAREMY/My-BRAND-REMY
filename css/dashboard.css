@@ -443,6 +443,20 @@ button:hover {
   border-radius: 10px;
   margin-left: -3%;
 }
+.queries2 {
+  background-color: rgba(236, 146, 101, 0.868);
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 20px 100px;
+  border-radius: 10px;
+  margin-left: -3%;
+  flex-wrap: wrap;
+}
 .SAVE {
   background-color: chocolate;
   width: 100%;
@@ -460,4 +474,3 @@ button:hover {
   font-weight: bolder;
   background-color: black;
 }
-

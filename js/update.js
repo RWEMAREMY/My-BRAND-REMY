@@ -30,9 +30,8 @@ formCreateBlog.addEventListener("submit", (e) => {
     const updatedData = {
       title: titleupdate.value,
       // content: contents.value,
-      content:quill.getText().trim(),
+      content: quill.getText().trim(),
     };
-
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`,
       {
@@ -51,9 +50,18 @@ formCreateBlog.addEventListener("submit", (e) => {
       })
       .then((updatedBlog) => {
         // Handle the updated blog data here
-        console.log("Blog updated successfully:", updatedBlog);
+
+        swal({
+          title: "Done!",
+          text: "Blog Edited successfully!!",
+          icon: "success",
+          button: "OK!",
+          updatedBlog,
+        }).then(() => {
+          window.location.href = "article.html";
+        });
         // For example, you can update the UI with the updated data
-        window.location.href = "article.html";
+        // window.location.href = "article.html";
       })
       .catch((error) => {
         console.error("Error updating blog:", error);
@@ -103,7 +111,6 @@ function updateBlog() {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-      return response.json();
     })
     .then((data) => {
       showToast("Blog edited successfully!");

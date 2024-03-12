@@ -45,7 +45,7 @@ contactus.addEventListener("submit", (e) => {
     messageError.innerHTML = "your message should be atleast 10 characters";
   } else {
     messageError.innerHTML = "";
-    alert("sent");
+    swal("Done!", "message sent \n thank you for reaching us", "success");
   }
 
   var Qname = Fname.value.trim();

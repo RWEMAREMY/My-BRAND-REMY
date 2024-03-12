@@ -137,7 +137,13 @@ async function createBlog() {
     throw new Error(response.statusText);
   } else {
     // const data = await response.json();
-    alert("Blog created successfully!!");
-    window.location.href = "article.html";
+    swal({
+      title: "Done!",
+      text: "Blog created successfully!!",
+      icon: "success",
+      button: "OK!",
+    }).then(() => {
+      window.location.href = "article.html";
+    });
   }
 }
