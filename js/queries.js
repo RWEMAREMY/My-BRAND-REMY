@@ -58,65 +58,39 @@ fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/queries`)
     const token = localStorage.getItem("token");
     const deleteBlog = (blogId) => {
       const url = "https://rwemaremy-my-brand-back-end.onrender.com";
-      fetch(`${url}/api/queries/${blogId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            // Show confirmation dialog
-            swal({
-              title: "Are you sure?",
-              text: "Once deleted, you will not be able to recover this query!",
-              icon: "warning",
-              buttons: ["Cancel", "Delete"],
-              dangerMode: true,
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this imaginary file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          fetch(`${url}/api/queries/${blogId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                swal("Poof! Our Query has been deleted!😢", {
+                  icon: "success",
+                  timer: 3000,
+                }).then(() => {
+                  location.reload();
+                });
+              } else {
+                console.error("Error deleting comments:", response.statusText);
+              }
             })
-              .then((willDelete) => {
-                if (willDelete) {
-                  // If user confirms deletion
-                  return fetch(`${url}/api/queries/${blogId}`, {
-                    method: "DELETE",
-                    headers: {
-                      Authorization: `Bearer ${localStorage.getItem("token")}`,
-                    },
-                  });
-                } else {
-                  // If user cancels deletion
-                  swal("Our query is safe!", {
-                    icon: "info",
-                  });
-                  throw new Error("Query deletion cancelled");
-                }
-              })
-              .then((deleteResponse) => {
-                if (deleteResponse.ok) {
-                  // If query deletion is successful
-                  swal("Poof! Our query has been deleted!", {
-                    icon: "success",
-                    timer: 3000, // Show success message for 3 seconds
-                  }).then(() => {
-                    window.location.reload();
-                  });
-                } else {
-                  console.error(
-                    "Error deleting query:",
-                    deleteResponse.statusText
-                  );
-                }
-              })
-              .catch((error) => {
-                console.error("Error:", error);
-              });
-          } else {
-            console.error("Error deleting query:", response.statusText);
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        } else {
+          swal("Our Query is now safe! 👍");
+        }
+      });
     };
 
     // console.log(theblog);
