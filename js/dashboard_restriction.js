@@ -10,3 +10,5 @@ function checkAuthentication() {
 window.addEventListener("DOMContentLoaded", () => {
   checkAuthentication();
 });
+
+

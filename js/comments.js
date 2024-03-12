@@ -65,44 +65,45 @@ document.addEventListener("DOMContentLoaded", function () {
       const token = localStorage.getItem("token");
       const deletequery = (blogId) => {
         const url = "https://rwemaremy-my-brand-back-end.onrender.com";
-        fetch(`${url}/api/comments/${blogId}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        })
-          .then((response) => {
-            if (response.ok) {
-              // Show confirmation dialog
-              swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this Comments!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-              }).then((willDelete) => {
-                if (willDelete) {
-                  // If user confirms deletion
-                  swal("Poof! Our Comments has been deleted!", {
+        swal({
+          title: "Are you sure?",
+          text: "Once deleted, you will not be able to recover this imaginary file!",
+          icon: "warning",
+          buttons: true,
+          dangerMode: true,
+        }).then((willDelete) => {
+          if (willDelete) {
+            swal("Poof! Your imaginary file has been deleted!", {
+              icon: "success",
+            });
+            fetch(`${url}/api/comments/${blogId}`, {
+              method: "DELETE",
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            })
+              .then((response) => {
+                if (response.ok) {
+                  swal("Poof! Our Comments has been deleted!😢", {
                     icon: "success",
                     timer: 3000,
                   }).then(() => {
-                    // Delay reload by 3 seconds
-
                     location.reload();
                   });
                 } else {
-                  // If user cancels deletion
-                  swal("Our Comments is safe!");
+                  console.error(
+                    "Error deleting comments:",
+                    response.statusText
+                  );
                 }
+              })
+              .catch((error) => {
+                console.error("Error:", error);
               });
-            } else {
-              console.error("Error deleting comments:", response.statusText);
-            }
-          })
-          .catch((error) => {
-            console.error("Error:", error);
-          });
+          } else {
+            swal("Our Comment is safe! 👍");
+          }
+        });
       };
     });
   function checkAuthentication() {
