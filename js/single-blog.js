@@ -78,7 +78,7 @@ fetch(allblog + `/api/blogs/${blogId}`)
          
           <div class="comment-box">
           <div class="comment-content">
-          <p>${comment.content}</p>
+          <p>${comment.content}</p> \n
           <p>${comment.name}  /   ${comment.email}
                   </div >
                   </div>
@@ -91,10 +91,9 @@ fetch(allblog + `/api/blogs/${blogId}`)
   })
   .catch((error) => console.error("Error fetching blog:", error));
 function validateForm() {
-  const nameInput = document.getElementById("name");
-  const emailInput = document.getElementById("email");
-  const messageInput = document.getElementById("message");
-
+  const nameInput = document.getElementById("names");
+  const emailInput = document.getElementById("emails");
+  const messageInput = document.getElementById("messages");
   if (
     nameInput.checkValidity() &&
     emailInput.checkValidity() &&
@@ -147,11 +146,17 @@ form.addEventListener("submit", (e) => {
       .then((response) => {
         if (response.ok) {
           // Comment created successfully
-          console.log("Comment created successfully");
-          window.location.reload();
+          swal({
+            title: "Done!",
+            text: "Comment Sent!!",
+            icon: "success",
+            button: "OK!",
+          }).then(() => {
+            window.location.reload();
+          });
         } else {
           // Failed to create comment
-          console.error("Failed to create comment");
+          swal("Ooops!", "Something is wrong with empty fields", "warning");
         }
       })
       .catch((error) => {

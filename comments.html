@@ -5,17 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/> 
-        <title>Dashboard</title>
+        <title>Queries</title>
 
 </head>
 
 <body>
     <div class="sidebar"> 
-    <div class="logo">
-        <h1>REMY</h1>
-    </div>
+    <div class="logo"><h1>REMY</h1></div>
     <ul class="menu">
+        
+        
         <li class="active">
+           
             <button>
             <a href="dashboard.html"><i class="fas fa-tachometer-alt"></i></a>
             <span>Dashboard</span></button>
@@ -23,7 +24,7 @@
         <li class="active">
             <button>
             <a href="article.html"><i class="fa-solid fa-newspaper"></i></a>
-            <span>Blog</span></button>
+            <span>Blogs</span></button>
         </li>
         <li class="active">
             <button>
@@ -35,17 +36,13 @@
             <a href="queries.html"><i class="fa-solid fa-clipboard-question"></i></a>
             <span>querries</span></button>
         </li> 
+      
         <li class="active">
             <button>
             <a href="comments.html"><i class="fa-solid fa-comments" style="color: #000000;"></i></a>
             <span>comments</span></button>
         </li>
-
-        <li class="logout">
-            <button>
-            <a href="add blogs.html"><i class="fa-solid fa-plus"></i></i></a>
-            <span>add</span></button>
-        </li>
+        
     </ul>
 </div>
 
@@ -64,34 +61,45 @@
             <img src="./assets/phot.png" alt=""/>
         </div>
     </div>
-    <div class="blogs" id="blogge">
-         <!-- <a href="single-blog.html">
-        <div class="blog-container " > 
-            <div class="blog-wrapper ">
-                <img src="./assets/blog image.png">
-                <br>
-                <h3>Reasons Business needs Agency.</h3>
-                <br>
-                <t class=text>Design Club is a digital agency specialized in ecommerce. We build scalable, high-end web shops.</t>
-                <div class="blog-heart"><img src="./assets/heart.png">2</div>
-                <p> <span id="delete"><i class="fa-solid fa-trash"  style="color: #d11515;"></i>delete</span> 
-                    
-                 <span id="refresh"><i class="fa-solid fa-arrows-rotate" style="color: #63E6BE;"></i> >Refresh</span></p>
-            </div>
-        </a> -->
-        </div>
 
-    
-        <footer>Made with ❤️ by M.Rwema Remy</footer> 
+<div class="card--container">
+    <h2 class="main--title">All Comments</h2>
+    <div class="cards"> 
+     <div class="card--wrapper" id="comment-box">
+      <!-- <div class="queries1">
+        <p>Frontend is my true passion and I really enjoy the whlie process of creating UIs,
+            from the first brainstorming, wireframes, mockups, design, all the way until the final product</p>
+      </div>
+     
+      <div class="queries1">
+        <p>Frontend is my true passion and I really enjoy the whlie process of creating UIs,
+            from the first brainstorming, wireframes, mockups, design, all the way until the final product</p>
+      </div>
+      <div class="queries1">
+        <p>Frontend is my true passion and I really enjoy the whlie process of creating UIs,
+            from the first brainstorming, wireframes, mockups, design, all the way until the final product</p>
+      </div>
+      <div class="queries1">
+        <p>Frontend is my true passion and I really enjoy the whlie process of creating UIs,
+            from the first brainstorming, wireframes, mockups, design, all the way until the final product</p>
+      </div>
+      <div class="queries1">
+        <p>Frontend is my true passion and I really enjoy the whlie process of creating UIs,
+            from the first brainstorming, wireframes, mockups, design, all the way until the final product</p>
+      </div> -->
 
-</div>
+</div> 
+      </div>  
+    </div>
 
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="./js/blogedit.js"></script>
-    
+
+
+
    
 
-
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="./js/comments.js"></script>
 </body>
 
 </html>

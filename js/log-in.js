@@ -38,15 +38,21 @@ login.addEventListener("submit", (e) => {
           },
           body: JSON.stringify(body),
         })
-        .then(res=>res.json())
+          .then((res) => res.json())
           .then((response) => {
             if (response.status) {
               // User logged in successfully
-              const resData= response.token
+              const resData = response.token;
               localStorage.setItem("token", resData);
               console.log("User logged in successfully");
-              alert("logged in successfully");
-              window.location.href = "dashboard.html";
+              swal({
+                title: "WELCOME!",
+                text: "You've logged in successfully!",
+                icon: "success",
+                timer: 2000, // Show success message for 2 seconds
+              }).then(() => {
+                window.location.href = "dashboard.html";
+              });
             } else {
               // Login failed
               console.error("Login failed");
@@ -57,7 +63,7 @@ login.addEventListener("submit", (e) => {
             console.error("Error:", error);
           });
       }
- 
+
       loginUser(body);
     }
   }
