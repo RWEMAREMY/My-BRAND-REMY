@@ -65,6 +65,7 @@ fetch(allblog + `/api/blogs/${blogId}`)
         // localStorage.setItem("count", `${count}`);
       }
     });
+
     // Fetch comments
 
     fetch(allblog + `/api/blogs/${blogId}/comments`)
@@ -90,6 +91,7 @@ fetch(allblog + `/api/blogs/${blogId}`)
       .catch((error) => console.error("Error fetching comments:", error));
   })
   .catch((error) => console.error("Error fetching blog:", error));
+
 function validateForm() {
   const nameInput = document.getElementById("names");
   const emailInput = document.getElementById("emails");
