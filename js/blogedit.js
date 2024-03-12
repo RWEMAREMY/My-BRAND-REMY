@@ -58,23 +58,39 @@ fetch(url + "/api/blogs")
 
     const deleteBlog = (blogId) => {
       const url = "https://rwemaremy-my-brand-back-end.onrender.com";
-      fetch(url + `/api/blogs/${blogId}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem(token)}`,
-        },
-      })
-        .then((response) => {
-          if (response.ok) {
-            console.log("Blog deleted successfully");
-            location.reload();
-          } else {
-            console.error("Error deleting blog:", response.statusText);
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this Blog!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+          fetch(url + `/api/blogs/${blogId}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem(token)}`,
+            },
+          })
+            .then((response) => {
+              if (response.ok) {
+                swal("Poof! Our Blog has been deleted!😢", {
+                  icon: "success",
+                  timer: 3000,
+                }).then(() => {
+                  location.reload();
+                });
+              } else {
+                console.error("Error deleting blog:", response.statusText);
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        } else {
+          swal("Our blog is safe! 👍");
+        }
+      });
     };
 
     const editButtons = document.querySelectorAll(".update-blog");
@@ -88,16 +104,15 @@ fetch(url + "/api/blogs")
   })
   .catch((error) => console.error("Error fetching blogs:", error));
 
-
-  function checkAuthentication() {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      // Redirect to login page if token is not present
-      window.location.href = "/log-in.html";
-    }
+function checkAuthentication() {
+  const token = localStorage.getItem("token");
+  if (!token) {
+    // Redirect to login page if token is not present
+    window.location.href = "/log-in.html";
   }
-  
-  // Call checkAuthentication when the dashboard page loads
-  window.addEventListener("DOMContentLoaded", () => {
-    checkAuthentication();
-  });
+}
+
+// Call checkAuthentication when the dashboard page loads
+window.addEventListener("DOMContentLoaded", () => {
+  checkAuthentication();
+});
