@@ -56,7 +56,7 @@ login.addEventListener("submit", (e) => {
             } else {
               // Login failed
               console.error("Login failed");
-              alert("oops invalid credentials!!!");
+              swal("Ooops!", " invalid credentials!!!", "info");
             }
           })
           .catch((error) => {

@@ -27,14 +27,12 @@ fetch(url + "/api/blogs")
     </div>   `;
       container.innerHTML = blogshtml;
       const blogger = document.querySelectorAll(".blog-container");
-blogger.forEach((blg) => {
-  blg.addEventListener("click", (e) => {
-    const id = e.target.closest(".blog-container").getAttribute("key");
-    window.location.href = `./single-blog.html?id=${id}`;
-  });
-});
+      blogger.forEach((blg) => {
+        blg.addEventListener("click", (e) => {
+          const id = e.target.closest(".blog-container").getAttribute("key");
+          window.location.href = `./single-blog.html?id=${id}`;
+        });
+      });
       // console.log(blog);
     });
   });
-
-
