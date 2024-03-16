@@ -102,7 +102,7 @@ form.addEventListener("submit", (e) => {
   }
 });
 async function createBlog() {
-  //console.log(content.value);
+  // console.log(content.value);
   // const contentTags = content.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
   // const contents = contentTags;
   //console.log(contents);

@@ -122,48 +122,48 @@ const emails = document.querySelector(".email");
 const messages = document.querySelector(".messages");
 const form = document.querySelector(".contact");
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  var Cname = names.value.trim();
-  var Cemail = emails.value.trim();
-  var Cmessage = messages.value.trim();
-  const data = {
-    name: Cname,
-    email: Cemail,
-    content: Cmessage,
-  };
-  console.log(blogId);
-  function postComment(data) {
-    // Assuming you're using fetch for API calls
-    fetch(
-      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      }
-    )
-      .then((response) => {
-        if (response.ok) {
-          // Comment created successfully
-          swal({
-            title: "Done!",
-            text: "Comment Sent!!",
-            icon: "success",
-            button: "OK!",
-          }).then(() => {
-            window.location.reload();
-          });
-        } else {
-          // Failed to create comment
-          swal("Ooops!", "Something is wrong with empty fields", "warning");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-  postComment(data);
-});
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   var Cname = names.value.trim();
+//   var Cemail = emails.value.trim();
+//   var Cmessage = messages.value.trim();
+//   const data = {
+//     name: Cname,
+//     email: Cemail,
+//     content: Cmessage,
+//   };
+//   console.log(blogId);
+//   function postComment(data) {
+//     // Assuming you're using fetch for API calls
+//     fetch(
+//       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
+//       {
+//         method: "POST",
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//         body: JSON.stringify(data),
+//       }
+//     )
+//       .then((response) => {
+//         if (response.ok) {
+//           // Comment created successfully
+//           swal({
+//             title: "Done!",
+//             text: "Comment Sent!!",
+//             icon: "success",
+//             button: "OK!",
+//           }).then(() => {
+//             window.location.reload();
+//           });
+//         } else {
+//           // Failed to create comment
+//           swal("Ooops!", "Something is wrong with empty fields", "warning");
+//         }
+//       })
+//       .catch((error) => {
+//         console.error("Error:", error);
+//       });
+//   }
+//   postComment(data);
+// });

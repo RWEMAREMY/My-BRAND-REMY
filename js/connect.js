@@ -6,7 +6,7 @@ fetch("https://rwemaremy-my-brand-back-end.onrender.com/api/blogs")
 
     return res.json();
   })
-  .then((data) => console.log(data))
+  .then((data) => console.log())
   .catch((error) =>
     console.error("There was a problem with the fetch operation:", error)
   );
