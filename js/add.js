@@ -84,6 +84,7 @@ form.addEventListener("submit", (e) => {
   } else {
     message.innerText = "";
   }
+ 
   // if (author.value === "") {
   //   isValid = false;
   //   authorError.innerText = "author is required.";
@@ -106,7 +107,7 @@ async function createBlog() {
   // const contentTags = content.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
   // const contents = contentTags;
   //console.log(contents);
-  const content = quill.getText().trim();
+  const content = quill.root.innerHTML;
   const titles = title.value;
   //console.log(titles);
   const token = localStorage.getItem("token");

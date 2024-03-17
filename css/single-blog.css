@@ -100,7 +100,6 @@ img {
 }
 .comment-box {
   display: grid;
-
   width: 50rem;
   border-radius: 15px;
   padding-top: 10px;
@@ -126,6 +125,15 @@ img {
   justify-content: center;
   font-size: larger;
   font-weight: 600;
+  word-wrap: break-word;
+}
+.comment-content p {
+  align-items: center;
+
+  max-width: 500px;
+  flex-wrap: wrap;
+  width: 490px;
+  word-wrap: break-word;
 }
 .contact {
   display: flex;
@@ -137,7 +145,7 @@ img {
   flex-direction: column;
 }
 .comment-header {
-  padding-left: 20rem;
+  padding-left: 10rem;
 }
 .contact h1 {
   top: -25%;

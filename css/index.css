@@ -613,7 +613,7 @@ textarea {
   height: 50px;
   margin-left: -5%;
   margin-left: 0;
-  padding-left: 0;
+  padding: 10px;
   border-radius: 10px;
   border: 2px solid darkgray;
   outline: 0;
