@@ -7,10 +7,12 @@ function Single() {
     Messages: "",
   });
 
-  // Function to fetch blog details
+  // Function to fetch blog details and comments
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const blogId = searchParams.get("id");
+
+    // Fetch blog details
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}`
     )
@@ -18,6 +20,7 @@ function Single() {
       .then((data) => setBlog(data))
       .catch((error) => console.error("Error fetching blog:", error));
 
+    // Fetch comments
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`
     )
@@ -43,6 +46,7 @@ function Single() {
       content: formData.Messages,
     };
 
+    // Submit new comment
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
       {
@@ -76,6 +80,29 @@ function Single() {
       });
   };
 
+  // Function to handle like button click
+  const handleLikeClick = () => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const blogId = searchParams.get("id");
+
+    // Increment likes count
+    fetch(
+      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/likes`,
+      {
+        method: "POST",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        // Update likes count in the UI
+        setBlog((prevBlog) => ({
+          ...prevBlog,
+          likes: data.likes,
+        }));
+      })
+      .catch((error) => console.error("Error updating likes:", error));
+  };
+
   return (
     <div className="wrapper">
       {blog ? (
@@ -85,7 +112,7 @@ function Single() {
           <div className="textbox">
             <p>{blog.content}</p>
             <div className="like">
-              <div className="likes likes-btn">
+              <div className="likes likes-btn" onClick={handleLikeClick}>
                 <img src="./assets/heart.png" />
                 <p id="single-display">{blog.likes}</p>
               </div>
