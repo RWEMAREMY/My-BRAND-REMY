@@ -1,3 +1,10 @@
+// Define renderHtmlContent function outside Single component
+const renderHtmlContent = (htmlContent) => {
+  return React.createElement("div", {
+    dangerouslySetInnerHTML: { __html: htmlContent },
+  });
+};
+
 function Single() {
   const [blog, setBlog] = React.useState(null);
   const [comments, setComments] = React.useState([]);
@@ -110,7 +117,8 @@ function Single() {
           <h2>{blog.title}</h2>
           <img src={blog.image} alt={blog.title} />
           <div className="textbox">
-            <p>{blog.content}</p>
+            {/* Use renderHtmlContent function here */}
+            {renderHtmlContent(blog.content)}
             <div className="like">
               <div className="likes likes-btn" onClick={handleLikeClick}>
                 <img src="./assets/heart.png" />

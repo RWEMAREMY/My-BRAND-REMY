@@ -2,6 +2,12 @@ const App = () => {
   const [blogs, setBlogs] = React.useState([]);
   const [hoovered, setHoovered] = React.useState(false);
 
+  const renderHtmlContent = (htmlContent) => {
+    return React.createElement("div", {
+      dangerouslySetInnerHTML: { __html: htmlContent },
+    });
+  };
+
   const getAllPosts = async () => {
     try {
       const res = await axios.get(
@@ -74,7 +80,9 @@ const App = () => {
               <img src={blog.image} className="image" alt={blog.title} />
               <br />
               <h3>{blog.title}</h3>
-              <p>{addThreeDotsAfterLength(blog.content, 90)}</p>
+              <p>
+                {renderHtmlContent(addThreeDotsAfterLength(blog.content, 90))}
+              </p>
               <div className="blog-heart">
                 <img
                   className="image-heart"

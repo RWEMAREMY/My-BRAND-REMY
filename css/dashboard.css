@@ -129,10 +129,20 @@ body {
 }
 
 /* ----------main content */
-
+#newtitleupdate {
+  background-color: aqua;
+  width: 40%;
+  font-weight: 600;
+  display: flexbox;
+}
 .main--content {
   position: flex;
   width: 100%;
+  padding: 0.2rem;
+}
+.main--contents {
+  position: flex;
+  width: 85%;
   padding: 0.2rem;
 }
 .header--wrapper img {
@@ -259,6 +269,11 @@ body {
   gap: 50px;
   padding-left: 90px;
   margin-top: 4%;
+}
+#title {
+  background-color: #ffab2ccc;
+  font-size: larger;
+  font: bolder;
 }
 .title {
   font-size: x-large;
@@ -429,6 +444,9 @@ button:hover {
   padding: 10px 10px;
   border-radius: 10px;
   margin-left: -3%;
+}
+.summernote {
+  max-width: 10%;
 }
 .queries1 {
   background-color: rgba(236, 146, 101, 0.868);

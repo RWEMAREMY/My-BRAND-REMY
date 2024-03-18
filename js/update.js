@@ -4,15 +4,11 @@ const currentUrl = new URL(window.location.href);
 const searchParams = new URLSearchParams(currentUrl.search);
 const blogId = searchParams.get("id");
 const titleupdate = document.querySelector("#newtitleupdate");
-// const contentupdates = document.querySelector(".contentupdate");
-const contents = quill.getText();
+const content = document.querySelector("#summernote");
 let blogshtml = "";
-// titleupdate.value = selectblog.title;
-//  contentupdates.value = selectblog.content;
 
 formCreateBlog.addEventListener("submit", (e) => {
   e.preventDefault();
-  // e.stopPropagation();
 
   let isValid = true;
 
@@ -21,19 +17,13 @@ formCreateBlog.addEventListener("submit", (e) => {
     titleError.textContent = "Title is required.";
   }
 
-  if (contents.value === "") {
-    isValid = false;
-    contentError.textContent = "Content is required.";
-  }
-
   if (isValid) {
     const updatedData = {
       title: titleupdate.value,
-      // content: contents.value,
-      content: quill.getText().trim(),
+      content: content.value, // Using Quill to get content
     };
     fetch(
-      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`,
+      `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}`, // Use blogId instead of undefined variable 'blog'
       {
         method: "PATCH",
         headers: {
@@ -49,8 +39,6 @@ formCreateBlog.addEventListener("submit", (e) => {
         return res.json();
       })
       .then((updatedBlog) => {
-        // Handle the updated blog data here
-
         swal({
           title: "Done!",
           text: "Blog Edited successfully!!",
@@ -60,20 +48,16 @@ formCreateBlog.addEventListener("submit", (e) => {
         }).then(() => {
           window.location.href = "article.html";
         });
-        // For example, you can update the UI with the updated data
-        // window.location.href = "article.html";
       })
       .catch((error) => {
         console.error("Error updating blog:", error);
-        // Handle error, show error message to the user, etc.
       });
   }
 });
 
 const urlParams = new URLSearchParams(window.location.search);
 const blog = urlParams.get("id");
-console.log(blog);
-// Fetch the specific blog's details using the blog ID
+
 fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`)
   .then((response) => {
     if (!response.ok) {
@@ -82,42 +66,25 @@ fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`)
     return response.json();
   })
   .then((blog) => {
-    // Populate the input fields with the existing data
     document.getElementById("newtitleupdate").value = blog.title;
-    // contents.value = blog.content;
-    quill.setText(blog.content);
-    // Store the blog object for reference when updating
+    let fetchedContent = blog.content;
+    $(document).ready(function () {
+      $("#summernote").summernote({
+        toolbar: [
+          ["style", ["bold", "italic", "underline", "clear"]],
+          ["font", ["strikethrough", "superscript", "subscript"]],
+          ["fontsize", ["fontsize"]],
+          ["color", ["color"]],
+          ["para", ["ul", "ol", "paragraph"]],
+          ["height", ["height"]],
+          ["misc", ["fullscreen", "codeview"]],
+        ],
+      });
+
+      $("#summernote").summernote("code", fetchedContent);
+    });
     window.blog = blog;
   })
-
   .catch((error) => console.error("Error fetching blog details:", error));
 
-// Function to update the blog with edited data
-function updateBlog() {
-  const updateData = {
-    title: document.getElementById("title").value,
-    // content: contents.value,
-    content: quill.getText(),
-  };
-
-  fetch(`https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blog}`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(updateData),
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-    })
-    .then((data) => {
-      showToast("Blog edited successfully!");
-      window.location.href = "update.html";
-
-      title.value = "";
-      rich.value = "";
-    })
-    .catch((error) => console.error("Error editing blog:", error));
-}
+// Remove the updateBlog function if it's not used elsewhere
