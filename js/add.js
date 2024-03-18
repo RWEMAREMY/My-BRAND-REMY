@@ -5,7 +5,7 @@ const titlerror = document.querySelector(".messagestitle");
 const form = document.querySelector("#form");
 const send = document.getElementById("send");
 const title = document.querySelector("#title");
-const content = quill.getText();
+const content = document.querySelector("#editor");
 const uniqueId = uuidv4();
 const fileInput = document.getElementById("files");
 
@@ -84,7 +84,7 @@ form.addEventListener("submit", (e) => {
   } else {
     message.innerText = "";
   }
- 
+
   // if (author.value === "") {
   //   isValid = false;
   //   authorError.innerText = "author is required.";
@@ -107,8 +107,9 @@ async function createBlog() {
   // const contentTags = content.value.replace(/<p>/g, "").replace(/<\/p>/g, "");
   // const contents = contentTags;
   //console.log(contents);
-  const content = quill.root.innerHTML;
+
   const titles = title.value;
+  const contents = content.value;
   //console.log(titles);
   const token = localStorage.getItem("token");
   if (!token) {
@@ -121,7 +122,7 @@ async function createBlog() {
   }
   const formData = new FormData();
   formData.append("title", titles);
-  formData.append("content", content);
+  formData.append("content", contents);
   formData.append("image", fileInput.files[0]);
 
   const url = "https://rwemaremy-my-brand-back-end.onrender.com";
