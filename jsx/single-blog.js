@@ -20,9 +20,8 @@ function Single() {
     Email: "",
     Messages: "",
   });
-  const [loading, setLoading] = React.useState(true); // State to track loading status
+  const [loading, setLoading] = React.useState(true);
 
-  // Function to fetch blog details and comments
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const blogId = searchParams.get("id");

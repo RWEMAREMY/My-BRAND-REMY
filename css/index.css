@@ -471,6 +471,14 @@ span {
 .slide-content {
   margin: 0 4px;
 }
+.blogs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.blog-container {
+  width: 300px;
+  margin: 10px;
+}
 
 .blog-container {
   position: relative;
@@ -478,14 +486,15 @@ span {
   flex-direction: row-reverse;
   margin-left: 0%;
   flex-wrap: wrap;
+
   flex-direction: row;
 }
 
 .blog-wrapper {
-  padding: 10px;
+  padding: 0;
   width: 400px;
   height: 400px;
-  background-color: rgb(188, 183, 183);
+  background-color: rgba(10, 82, 120, 0.493);
   border-radius: 8px;
   overflow: hidden;
   margin: 8px;
@@ -523,7 +532,7 @@ span {
   width: 40px;
   height: 50px;
   bottom: 0%;
-  right: 8%;
+  right: 15%;
   margin-left: 40%;
   position: relative;
   scroll-margin: 100px;
@@ -800,7 +809,7 @@ textarea {
   .menu {
     display: none;
   }
-  
+
   .menu.show {
     color: #ffffff;
     z-index: 3;
