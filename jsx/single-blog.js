@@ -1,3 +1,10 @@
+// Define loader component
+const Loader = () => (
+  <div className="loader-container">
+    <div className="loader"></div>
+  </div>
+);
+
 // Define renderHtmlContent function outside Single component
 const renderHtmlContent = (htmlContent) => {
   return React.createElement("div", {
@@ -13,6 +20,7 @@ function Single() {
     Email: "",
     Messages: "",
   });
+  const [loading, setLoading] = React.useState(true); // State to track loading status
 
   // Function to fetch blog details and comments
   React.useEffect(() => {
@@ -24,7 +32,10 @@ function Single() {
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}`
     )
       .then((res) => res.json())
-      .then((data) => setBlog(data))
+      .then((data) => {
+        setBlog(data);
+        setLoading(false); // Set loading to false once data is fetched
+      })
       .catch((error) => console.error("Error fetching blog:", error));
 
     // Fetch comments
@@ -112,7 +123,9 @@ function Single() {
 
   return (
     <div className="wrapper">
-      {blog ? (
+      {loading ? ( // Show loader if loading is true
+        <Loader />
+      ) : (
         <>
           <h2>{blog.title}</h2>
           <img src={blog.image} alt={blog.title} />
@@ -148,8 +161,6 @@ function Single() {
             </div>
           </div>
         </>
-      ) : (
-        <div>Loading...</div>
       )}
       <form className="contact" onSubmit={handleSubmit}>
         <br />

@@ -800,6 +800,7 @@ textarea {
   .menu {
     display: none;
   }
+  
   .menu.show {
     color: #ffffff;
     z-index: 3;

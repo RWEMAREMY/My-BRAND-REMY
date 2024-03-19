@@ -14,7 +14,6 @@ const App = () => {
         "https://rwemaremy-my-brand-back-end.onrender.com/api/blogs"
       );
 
-      console.log(res);
       setBlogs(res.data);
     } catch (error) {
       console.log("Error fetching posts:", error);
