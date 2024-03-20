@@ -1,5 +1,5 @@
 const rootReducer = (
-  state = { blog: null, comments: [] , loading: true },
+  state = { blog: null, comments: [], loading: true },
   action
 ) => {
   switch (action.type) {
@@ -14,33 +14,33 @@ const rootReducer = (
   }
 };
 
-// Create Redux store
 const store = Redux.createStore(rootReducer);
 
-// Loader component
 const Loader = () => (
   <div className="loader-container">
     <div className="loader"></div>
   </div>
 );
 
-// HTML content renderer
 const renderHtmlContent = (htmlContent) => {
   return React.createElement("div", {
     dangerouslySetInnerHTML: { __html: htmlContent },
   });
 };
 
-// Single component connected to Redux
 const Single = () => {
   const { blog, comments, loading } = ReactRedux.useSelector((state) => state);
   const dispatch = ReactRedux.useDispatch();
+  const [formData, setFormData] = React.useState({
+    Names: "",
+    Email: "",
+    Messages: "",
+  });
 
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const blogId = searchParams.get("id");
 
-    // Fetch blog details
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}`
     )
@@ -51,7 +51,6 @@ const Single = () => {
       })
       .catch((error) => console.error("Error fetching blog:", error));
 
-    // Fetch comments
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`
     )
@@ -62,7 +61,10 @@ const Single = () => {
 
   const handleFormDataChange = (e) => {
     const { name, value } = e.target;
-    dispatch(updateFormData(name, value));
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
   const handleSubmit = (e) => {
@@ -76,7 +78,6 @@ const Single = () => {
       content: formData.Messages,
     };
 
-    // Submit new comment
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
       {
@@ -95,7 +96,6 @@ const Single = () => {
         }
       })
       .then((data) => {
-        // Update comments in Redux store
         dispatch({ type: "SET_COMMENTS", payload: [...comments, data] });
 
         swal({
@@ -117,10 +117,8 @@ const Single = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const blogId = searchParams.get("id");
 
-    // Increment likes count in Redux store
-    dispatch({ type: "INCREMENT_LIKES" }); // Dispatching action to increment likes
+    dispatch({ type: "INCREMENT_LIKES" });
 
-    // Increment likes count on the server
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/likes`,
       {
@@ -128,7 +126,7 @@ const Single = () => {
       }
     )
       .then(() => {
-        window.location.reload(); // Reload the page after successful like
+        window.location.reload();
       })
       .catch((error) => console.error("Error updating likes:", error));
   };
@@ -209,7 +207,6 @@ const Single = () => {
   );
 };
 
-// Render Single component wrapped with Provider from React-Redux
 ReactDOM.render(
   <ReactRedux.Provider store={store}>
     <Single />

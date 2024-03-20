@@ -51,7 +51,7 @@ const handleBlogClick = (e) => {
 const App = () => {
   const dispatch = useDispatch();
   const blogs = useSelector((state) => state.blogs);
-  const [hoovered, setHovered] = React.useState(false); // State to track hover
+  const [hoovered, setHovered] = React.useState(false);
 
   React.useEffect(() => {
     dispatch(getAllPosts());
@@ -60,13 +60,15 @@ const App = () => {
     const intervalId = setInterval(() => {
       const blogsContainer = document.getElementById("blogs");
       if (blogsContainer) {
-        blogsContainer.scrollLeft += window.innerWidth; // Scroll one window width
+        blogsContainer.scrollLeft += window.innerWidth;
       }
-    }, 80); // Scroll every 3 seconds
+    }, 80);
 
-    return () => clearInterval(intervalId); // Clean up the interval
+    return () => clearInterval(intervalId);
   }, [dispatch]);
-
+  React.useEffect(() => {
+    console.log(blogs);
+  }, [blogs]);
   return (
     <div
       className="blogs"
@@ -78,7 +80,7 @@ const App = () => {
         overflowX: "auto",
         scrollBehavior: "smooth",
         width: "90rem",
-        whiteSpace: "wrap", // Prevents wrapping of blogs
+        whiteSpace: "wrap",
       }}
     >
       {blogs.length === 0 ? (
@@ -90,7 +92,7 @@ const App = () => {
             key={blog._id}
             data-id={blog._id}
             onClick={handleBlogClick}
-            style={{ flex: "0 0 auto", marginRight: "20px" }} // Adjust spacing between blogs
+            style={{ flex: "0 0 auto", marginRight: "20px" }}
           >
             <div className="blog-wrapper">
               <img src={blog.image} className="image" alt={blog.title} />
@@ -102,7 +104,8 @@ const App = () => {
                   90
                 )}
               />
-             
+              {/* <p>{addThreeDotsAfterLength(blog.content, 90)}</p> */}
+
               <div className="blog-heart">
                 <img
                   className="image-heart"
