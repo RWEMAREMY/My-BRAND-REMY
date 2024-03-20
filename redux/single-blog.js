@@ -1,57 +1,72 @@
-// Define loader component
+const rootReducer = (
+  state = { blog: null, comments: [], loading: true },
+  action
+) => {
+  switch (action.type) {
+    case "SET_BLOG":
+      return { ...state, blog: action.payload };
+    case "SET_COMMENTS":
+      return { ...state, comments: action.payload };
+    case "SET_LOADING":
+      return { ...state, loading: action.payload };
+    default:
+      return state;
+  }
+};
+
+const store = Redux.createStore(rootReducer);
+
 const Loader = () => (
   <div className="loader-container">
     <div className="loader"></div>
   </div>
 );
 
-// Define renderHtmlContent function outside Single component
 const renderHtmlContent = (htmlContent) => {
   return React.createElement("div", {
     dangerouslySetInnerHTML: { __html: htmlContent },
   });
 };
 
-function Single() {
-  const [blog, setBlog] = React.useState(null);
-  const [comments, setComments] = React.useState([]);
+const Single = () => {
+  const { blog, comments, loading } = ReactRedux.useSelector((state) => state);
+  const dispatch = ReactRedux.useDispatch();
   const [formData, setFormData] = React.useState({
     Names: "",
     Email: "",
     Messages: "",
   });
-  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const blogId = searchParams.get("id");
 
-    // Fetch blog details
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}`
     )
       .then((res) => res.json())
       .then((data) => {
-        setBlog(data);
-        setLoading(false); // Set loading to false once data is fetched
+        dispatch({ type: "SET_BLOG", payload: data });
+        dispatch({ type: "SET_LOADING", payload: false });
       })
       .catch((error) => console.error("Error fetching blog:", error));
 
-    // Fetch comments
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`
     )
       .then((res) => res.json())
-      .then((data) => setComments(data))
+      .then((data) => dispatch({ type: "SET_COMMENTS", payload: data }))
       .catch((error) => console.error("Error fetching comments:", error));
-  }, []);
+  }, [dispatch]);
 
-  // Function to handle form data changes
   const handleFormDataChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
   };
 
-  // Function to handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     const searchParams = new URLSearchParams(window.location.search);
@@ -63,7 +78,6 @@ function Single() {
       content: formData.Messages,
     };
 
-    // Submit new comment
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/comments`,
       {
@@ -81,7 +95,9 @@ function Single() {
           throw new Error("Failed to submit comment");
         }
       })
-      .then(() => {
+      .then((data) => {
+        dispatch({ type: "SET_COMMENTS", payload: [...comments, data] });
+
         swal({
           title: "Done!",
           text: "Comment Sent!!",
@@ -97,39 +113,33 @@ function Single() {
       });
   };
 
-  // Function to handle like button click
   const handleLikeClick = () => {
     const searchParams = new URLSearchParams(window.location.search);
     const blogId = searchParams.get("id");
 
-    // Increment likes count
+    dispatch({ type: "INCREMENT_LIKES" });
+
     fetch(
       `https://rwemaremy-my-brand-back-end.onrender.com/api/blogs/${blogId}/likes`,
       {
         method: "POST",
       }
     )
-      .then((response) => response.json())
-      .then((data) => {
-        // Update likes count in the UI
-        setBlog((prevBlog) => ({
-          ...prevBlog,
-          likes: data.likes,
-        }));
+      .then(() => {
+        window.location.reload();
       })
       .catch((error) => console.error("Error updating likes:", error));
   };
 
   return (
     <div className="wrapper">
-      {loading ? ( // Show loader if loading is true
+      {loading ? (
         <Loader />
       ) : (
         <>
           <h2>{blog.title}</h2>
           <img src={blog.image} alt={blog.title} />
           <div className="textbox">
-            {/* Use renderHtmlContent function here */}
             {renderHtmlContent(blog.content)}
             <div className="like">
               <div className="likes likes-btn" onClick={handleLikeClick}>
@@ -195,6 +205,11 @@ function Single() {
       </form>
     </div>
   );
-}
+};
 
-ReactDOM.render(<Single />, document.querySelector("#comments_Add_jsx"));
+ReactDOM.render(
+  <ReactRedux.Provider store={store}>
+    <Single />
+  </ReactRedux.Provider>,
+  document.querySelector("#comments_Add_jsx")
+);
